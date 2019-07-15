@@ -5,43 +5,32 @@ import EmployeeList from './employee/EmployeeList'
 import CandyList from './candy/CandyList'
 
 class ApplicationViews extends Component {
-  storeArray = [
-    { id: 1, name: "North Store", address: "123 Fake St"},
-    { id: 2, name: "South Store", address: "8 Main St"},
-    { id: 3, name: "East Store", address: "34 Church Ave"},
-    { id: 4, name: "West Store", address: "26 Broad St"},
-  ]
 
-  employeeArray = [
-    { id: 1, name: "Dustin Hobson"},
-    { id: 2, name: "Scott Silver"},
-    { id: 3, name: "Ben Parker"},
-    { id: 4, name: "Sam Birky"}
-  ]
-
-  candyTypeArray = [
-    { id: 1, name: "Chocolate"},
-    { id: 2, name: "Lollipop"},
-    { id: 3, name: "Gum"},
-    { id: 4, name: "Sugar Candy"}
-  ]
-
-  candyArray = [
-    { id: 1, candyTypeId: 4, name: "Sweet Tart"},
-    { id: 2, candyTypeId: 2, name: "Blow Pop"},
-    { id: 3, candyTypeId: 1, name: "Crunch Bar"},
-    { id: 4, candyTypeId: 3, name: "Chicklets"}
-  ]
-
-
+//original state is an empty array, filled with API data after its fetched and then state is reset with setState
   state = {
-    stores: this.storeArray,
-    employees: this.employeeArray,
-    candyTypes: this.candyTypeArray,
-    candies: this.candyArray
+    stores: [],
+    employees: [],
+    candyTypes: [],
+    candies: [],
   }
 
-
+  componentDidMount() {
+    const newState = {}
+//fetching arrays that now exist in api
+    fetch("http://localhost:5002/stores")
+        .then(r => r.json())
+        .then(stores => newState.stores = stores)
+        .then(() => fetch("http://localhost:5002/employees")
+        .then(r => r.json()))
+        .then(employees => newState.employees = employees)
+        .then(() => fetch("http://localhost:5002/candies")
+        .then(r => r.json()))
+        .then(candies => newState.candies = candies)
+        .then(() => fetch("http://localhost:5002/candyTypes")
+        .then(r => r.json()))
+        .then(candyTypes => newState.candyTypes = candyTypes)
+        .then(() => this.setState(newState))
+}
 
     render () {
       return (
