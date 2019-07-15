@@ -53,7 +53,7 @@ class ApplicationViews extends Component {
             return <EmployeeList employees={this.state.employees} />
           }} />
           <Route exact path = "/candies" render={(props) => {
-            return <CandyList candies={this.state.candies} />
+            return <CandyList candies={this.state.candies} candyTypes={this.state.candyTypes} /> // Pass cadyTypes state variable to the CandyList variable so it can be used in CandyList
           }} />
         </React.Fragment>
       )
