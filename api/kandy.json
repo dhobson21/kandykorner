@@ -1,0 +1,26 @@
+{
+  "stores": [
+    { "id": 1, "name": "North Store", "address": "123 Fake St"},
+    { "id": 2, "name": "South Store", "address": "8 Main St"},
+    { "id": 3, "name": "East Store", "address": "34 Church Ave"},
+    { "id": 4, "name": "West Store", "address": "26 Broad St"}
+  ],
+  "employees": [
+    { "id": 1, "name": "Dustin Hobson"},
+    { "id": 2, "name": "Scott Silver"},
+    { "id": 3, "name": "Ben Parker"},
+    { "id": 4, "name": "Sam Birky"}
+  ],
+  "candies": [
+    { "id": 1, "candyTypeId": 4, "name": "Sweet Tart"},
+    { "id": 2, "candyTypeId": 2, "name": "Blow Pop"},
+    { "id": 3, "candyTypeId": 1, "name": "Crunch Bar"},
+    { "id": 4, "candyTypeId": 3, "name": "Chicklets"}
+  ],
+  "candyTypes": [
+    { "id": 1, "name": "Chocolate"},
+    { "id": 2, "name": "Lollipop"},
+    { "id": 3, "name": "Gum"},
+    { "id": 4, "name": "Sugar Candy"}
+  ]
+}
