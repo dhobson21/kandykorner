@@ -31,6 +31,19 @@ class ApplicationViews extends Component {
         .then(candyTypes => newState.candyTypes = candyTypes)
         .then(() => this.setState(newState))
 }
+//function to delete a candy from db. passed to CandyList in props and attached as onClick EL on rendered button
+  discontinueCandy= id => {
+    return fetch(`http://localhost:5002/candies/${id}`, {
+      method: "DELETE"
+  })
+    .then(candyData => candyData.json())
+    .then(() => fetch(`http://localhost:5002/candies`))
+    .then(candyData => candyData.json())
+    .then(candies => this.setState({
+        candies: candies
+    })
+  )
+  }
 
     render () {
       return (
@@ -42,7 +55,7 @@ class ApplicationViews extends Component {
             return <EmployeeList employees={this.state.employees} />
           }} />
           <Route exact path = "/candies" render={(props) => {
-            return <CandyList candies={this.state.candies} candyTypes={this.state.candyTypes} /> // Pass cadyTypes state variable to the CandyList variable so it can be used in CandyList
+            return <CandyList discontinueCandy={this.discontinueCandy} candies={this.state.candies} candyTypes={this.state.candyTypes} /> // Pass cadyTypes state variable to the CandyList variable so it can be used in CandyList
           }} />
         </React.Fragment>
       )
