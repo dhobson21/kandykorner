@@ -24,19 +24,23 @@
   "employees": [
     {
       "id": 1,
-      "name": "Dustin Hobson"
+      "name": "Dustin Hobson",
+      "phone": "(585)-313-6083"
     },
     {
       "id": 2,
-      "name": "Scott Silver"
+      "name": "Scott Silver",
+      "phone": "(585)-478-1965"
     },
     {
       "id": 3,
-      "name": "Ben Parker"
+      "name": "Ben Parker",
+      "phone": "(585)-737-0818"
     },
     {
       "id": 4,
-      "name": "Sam Birky"
+      "name": "Sam Birky",
+      "phone": "(585)-503-5926"
     }
   ],
   "candies": [
