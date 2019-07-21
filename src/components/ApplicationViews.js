@@ -3,6 +3,11 @@ import React, { Component } from "react"
 import StoreList from './store/StoreList'
 import EmployeeList from './employee/EmployeeList'
 import CandyList from './candy/CandyList'
+import StoreManager from "../modules/StoreManager"
+import EmployeeManager from "../modules/EmployeeManager"
+import CandyManager from "../modules/CandyManager"
+import CandyTypeManager from "../modules/CandyTypeManager"
+
 
 class ApplicationViews extends Component {
 
@@ -17,28 +22,19 @@ class ApplicationViews extends Component {
   componentDidMount() {
     const newState = {}
 //fetching arrays that now exist in api
-    fetch("http://localhost:5002/stores")
-        .then(r => r.json())
+    StoreManager.getAll("stores")
         .then(stores => newState.stores = stores)
-        .then(() => fetch("http://localhost:5002/employees")
-        .then(r => r.json()))
+        EmployeeManager.getAll("employees")
         .then(employees => newState.employees = employees)
-        .then(() => fetch("http://localhost:5002/candies")
-        .then(r => r.json()))
+        CandyManager.getAll("candies")
         .then(candies => newState.candies = candies)
-        .then(() => fetch("http://localhost:5002/candyTypes")
-        .then(r => r.json()))
+       CandyTypeManager.getAll("candyTypes")
         .then(candyTypes => newState.candyTypes = candyTypes)
         .then(() => this.setState(newState))
 }
 //function to delete a candy from db. passed to CandyList in props and attached as onClick EL on rendered button
   discontinueCandy= id => {
-    return fetch(`http://localhost:5002/candies/${id}`, {
-      method: "DELETE"
-  })
-    .then(candyData => candyData.json())
-    .then(() => fetch(`http://localhost:5002/candies`))
-    .then(candyData => candyData.json())
+    return CandyManager.removeAndList(id)
     .then(candies => this.setState({
         candies: candies
     })
