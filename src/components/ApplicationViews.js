@@ -4,6 +4,7 @@ import React, { Component } from "react"
 import StoreList from './store/StoreList'
 import EmployeeList from './employee/EmployeeList'
 import EmployeeDetail from "./employee/EmployeeDetail"
+import EmployeeForm from"./employee/EmployeeForm"
 import CandyList from './candy/CandyList'
 import StoreManager from "../modules/StoreManager"
 import StoreDetail from "./store/StoreDetail"
@@ -68,6 +69,15 @@ class ApplicationViews extends Component {
     })
   }
 
+  hireEmployee= (createdEmployee) => {
+    return EmployeeManager.post(createdEmployee)
+    .then(() => EmployeeManager.getAll(  ))
+    .then(employees => {
+      this.setState ({
+        employees: employees
+      })
+    })
+  }
     render () {
       return (
         <React.Fragment>
@@ -82,8 +92,12 @@ class ApplicationViews extends Component {
             return <StoreDetail deleteLocation={this.deleteLocation} stores={this.state.stores} store={store} />
           }} />
           <Route exact path = "/employees" render={(props) => {
-            return <EmployeeList employees={this.state.employees} />
+            return <EmployeeList {...props} employees={this.state.employees} />
           }} />
+          <Route path="/employees/new" render={(props) => {
+            return <EmployeeForm {...props}  hireEmployee={this.hireEmployee} />
+          }} />
+
           <Route path ="/employees/:employeeId(\d+)" render ={(props) => {
             let employee = this.state.employees.find(employee => employee.id === parseInt(props.match.params.employeeId))
               if(!employee) {
