@@ -41,6 +41,11 @@
       "id": 4,
       "name": "Sam Birky",
       "phone": "(585)-503-5926"
+    },
+    {
+      "name": "Mike Scalzo",
+      "phone": "(585)-392-3695",
+      "id": 8
     }
   ],
   "candies": [
